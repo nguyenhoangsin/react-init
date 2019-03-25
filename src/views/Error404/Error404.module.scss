@@ -1,0 +1,35 @@
+.wrap {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  max-width: 475px;
+  padding: 20px;
+}
+
+.right {
+  padding: 20px;
+}
+
+.status {
+  margin: 16px 0;
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 3.5rem;
+}
+
+.message {
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 2.25rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #0063b8;
+}
