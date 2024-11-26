@@ -1,4 +1,4 @@
-import { redirect, LoaderFunctionArgs } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import localStorageUtils from "../utils/localStorageUtils";
 
 export enum UserRole {
@@ -14,6 +14,7 @@ export enum Permission {
 
 interface User {
   isAuthenticated: boolean;
+  isFirstLogin: boolean | null;
   username: string | null;
   role: UserRole | null;
   permissions: Permission[] | null;
@@ -30,6 +31,7 @@ let user: User | null = localStorageUtils.getItem<User>(AUTH_USER);
 
 export const authProvider: AuthProvider = {
   isAuthenticated: user ? user.isAuthenticated : false,
+  isFirstLogin: user ? user.isFirstLogin : false,
   username: user ? user.username : null,
   role: user ? user.role : null,
   permissions: user ? user.permissions : null,
@@ -40,6 +42,7 @@ export const authProvider: AuthProvider = {
       username: username,
     });
     authProvider.isAuthenticated = true;
+    authProvider.isFirstLogin = true;
     authProvider.username = username;
     authProvider.role = UserRole.ADMIN;
     authProvider.permissions = [];
@@ -49,6 +52,7 @@ export const authProvider: AuthProvider = {
     localStorageUtils.removeItem(AUTH_USER);
     user = null;
     authProvider.isAuthenticated = false;
+    authProvider.isFirstLogin = null;
     authProvider.username = null;
     authProvider.role = null;
     authProvider.permissions = null;
@@ -67,21 +71,33 @@ export const authProvider: AuthProvider = {
   },
 };
 
-export function authLoader({ request }: LoaderFunctionArgs) {
+export function authLoader() {
+  if (authProvider.isFirstLogin) {
+    return redirect("/change-password");
+  }
+
   if (!authProvider.isAuthenticated) {
-    const params = new URLSearchParams();
-
-    params.set("from", new URL(request.url).pathname);
-
-    return redirect("/login?" + params.toString());
+    return redirect("/login");
   }
 
   return null;
 }
 
 export function loginLoader() {
+  if (authProvider.isFirstLogin) {
+    return redirect("/change-password");
+  }
+
   if (authProvider.isAuthenticated) {
     return redirect("/");
+  }
+
+  return null;
+}
+
+export function changePasswordLoader() {
+  if (!authProvider.isAuthenticated) {
+    return redirect("/login");
   }
 
   return null;

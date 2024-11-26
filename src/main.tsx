@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
-import { authLoader, loginLoader } from './services/authService';
+import { authLoader, loginLoader, changePasswordLoader } from './services/authService';
 import store from './stores/store';
 import './styles/index.scss';
 import App from './views/App';
@@ -12,6 +12,9 @@ import LoadingOverlay from './views/components/LoadingOverlay/LoadingOverlay';
 
 const HomePage = lazy(() => import('./views/HomePage/HomePage'));
 const LoginPage = lazy(() => import('./views/LoginPage/LoginPage'));
+const ChangePasswordPage = lazy(() => import('./views/ChangePasswordPage/ChangePasswordPage'));
+const ForgotPasswordPage = lazy(() => import('./views/ForgotPasswordPage/ForgotPasswordPage'));
+
 
 const router = createBrowserRouter([
   {
@@ -44,6 +47,23 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<LoadingOverlay />}>
         <LoginPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/change-password',
+    // loader: changePasswordLoader,
+    element: (
+      <Suspense fallback={<LoadingOverlay />}>
+        <ChangePasswordPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/forgot-password',
+    element: (
+      <Suspense fallback={<LoadingOverlay />}>
+        <ForgotPasswordPage />
       </Suspense>
     ),
   },
