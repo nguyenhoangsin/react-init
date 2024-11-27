@@ -1,0 +1,47 @@
+/* Reset margin và padding */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header cố định */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Chiều cao của header */
+  background-color: #333; /* Màu nền */
+  color: white; /* Màu chữ */
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-between; /* Căn giữa và giãn khoảng cách */
+  padding: 0 20px; /* Khoảng cách hai bên */
+  z-index: 1000; /* Đảm bảo nằm trên các phần tử khác */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+}
+
+/* Logo */
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Menu điều hướng */
+.header .nav {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa các mục menu */
+}
+
+/* Link điều hướng */
+.header .nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+/* Hiệu ứng hover */
+.header .nav a:hover {
+  color: #ffcc00; /* Màu chữ khi hover */
+}

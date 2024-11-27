@@ -4,23 +4,20 @@ import { Helmet } from 'react-helmet-async';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { emailRegex } from '../../constants/regexConstant';
 import { authProvider } from '../../services/authService';
 import loadingService from '../../services/loadingService';
-import style from './LoginPage.module.scss';
+import style from './ForgotPasswordPage.module.scss';
 
 type FormData = {
   email: string;
-  password: string;
 };
 
 const schema = yup.object().shape({
   email: yup.string().required('Email Address is required').matches(emailRegex, 'Invalid Email Address format'),
-  password: yup.string().required('Password is required'),
 });
 
-function LoginPage(): ReactElement {
+function ForgotPasswordPage(): ReactElement {
   const navigate = useNavigate();
 
   const {
@@ -34,11 +31,9 @@ function LoginPage(): ReactElement {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log('Form submitted:', data);
-    toast.error('Login error');
-    toast.success('Login success');
     try {
       loadingService.showLoading();
-      // await authProvider.signin(data.email);
+      await authProvider.signin(data.email);
       // navigate("/");
     } catch (error) {
       console.log(error);
@@ -50,10 +45,10 @@ function LoginPage(): ReactElement {
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>Forgot Password</title>
       </Helmet>
       <div className={style.wrap}>
-        <h1>Wellcom to RC DIAGS</h1>
+        <h1>Forgot Password</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Controller
@@ -71,27 +66,10 @@ function LoginPage(): ReactElement {
             />
             {errors.email && <div style={{ color: 'red' }}>{errors.email.message}</div>}
           </div>
-
+          <button type='submit'>Send</button>
           <div>
-            <Controller
-              name='password'
-              control={control}
-              defaultValue=''
-              render={({ field }) => (
-                <input value={field.value} onBlur={field.onBlur} onChange={field.onChange} placeholder='Password' />
-              )}
-            />
-            {errors.password && <div style={{ color: 'red' }}>{errors.password.message}</div>}
-          </div>
-          <div>
-            <Link to='/forgot-password' className={style.link}>
-              Forgot password
-            </Link>
-          </div>
-          <button type='submit'>Sign in</button>
-          <div>
-            <Link to='/change-password' className={style.link}>
-              Goto page change password for firsttime login
+            <Link to='/login' className={style.link}>
+              Back on Login
             </Link>
           </div>
         </form>
@@ -100,4 +78,4 @@ function LoginPage(): ReactElement {
   );
 }
 
-export default LoginPage;
+export default ForgotPasswordPage;
