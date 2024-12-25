@@ -1,5 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { Box, InputBase, List, ListItem, ListItemText, Paper, Tooltip } from '@mui/material';
+import {
+  Box,
+  InputBase,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Tooltip,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './ListWithSearch.scss';
 
@@ -27,8 +35,11 @@ const ListWithSearch: React.FC<ListWithSearchProps> = ({
 
   // Filter items based on the search term
   const filteredItems = useMemo(
-    () => items.filter((item) => item.label.toLowerCase().includes(searchTerm.toLowerCase())),
-    [items, searchTerm]
+    () =>
+      items.filter((item) =>
+        item.label.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    [items, searchTerm],
   );
 
   console.log(activeId);

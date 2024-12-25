@@ -18,18 +18,22 @@ function Home(): ReactElement {
   return (
     <>
       <h1>Home Page - USER: {authProvider.username}</h1>
-      <Link to="/login">Go to login</Link>
-      <button type="submit" disabled={isLoggingOut} onClick={onLogoutClick}>
+      <Link to='/login'>Go to login</Link>
+      <button type='submit' disabled={isLoggingOut} onClick={onLogoutClick}>
         {isLoggingOut ? 'Logging out...' : 'Logout'}
       </button>
       <div>
-      <button onClick={() => {
-        loadingService.showLoading();
-        setTimeout(() => {
-          loadingService.hideLoading();
-        }, 2000);
-      }}>Show Loading</button>
-    </div>
+        <button
+          onClick={() => {
+            loadingService.showLoading();
+            setTimeout(() => {
+              loadingService.hideLoading();
+            }, 2000);
+          }}
+        >
+          Show Loading
+        </button>
+      </div>
     </>
   );
 }

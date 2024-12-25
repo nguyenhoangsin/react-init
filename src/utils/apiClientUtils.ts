@@ -33,7 +33,7 @@ class ApiClient {
 
   public async get<T>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axiosInstance.get<T>(url, config);
@@ -49,7 +49,7 @@ class ApiClient {
   public async post<T>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axiosInstance.post<T>(url, data, config);
@@ -65,7 +65,7 @@ class ApiClient {
   public async put<T>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axiosInstance.put<T>(url, data, config);
@@ -80,7 +80,7 @@ class ApiClient {
 
   public async delete<T>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axiosInstance.delete<T>(url, config);

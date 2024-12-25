@@ -45,7 +45,7 @@ const MultipleSelect: React.FC<MultipleSelectProps> = ({
         ...item,
         isSelect: item.isSelect ?? false,
         isDisable: item.isDisable ?? false,
-      }))
+      })),
     );
   }, [value]);
 
@@ -64,7 +64,9 @@ const MultipleSelect: React.FC<MultipleSelectProps> = ({
 
     if (value.includes('all')) {
       const allSelected = data.every((item) => item.isSelect);
-      const updatedData = data.map((item) => (item.isDisable ? item : { ...item, isSelect: !allSelected }));
+      const updatedData = data.map((item) =>
+        item.isDisable ? item : { ...item, isSelect: !allSelected },
+      );
 
       setData(updatedData);
       onChange(updatedData);
@@ -73,8 +75,8 @@ const MultipleSelect: React.FC<MultipleSelectProps> = ({
         value.includes(item.id)
           ? { ...item, isSelect: !item.isDisable }
           : item.isSelect && !value.includes(item.id)
-          ? { ...item, isSelect: false }
-          : item
+            ? { ...item, isSelect: false }
+            : item,
       );
 
       setData(updatedData);
@@ -141,7 +143,11 @@ const MultipleSelect: React.FC<MultipleSelectProps> = ({
           {/* Items */}
           {data.map((item) => (
             <MenuItem key={item.id} value={item.id} disabled={item.isDisable}>
-              <Checkbox size='small' checked={item.isSelect} disabled={item.isDisable} />
+              <Checkbox
+                size='small'
+                checked={item.isSelect}
+                disabled={item.isDisable}
+              />
               <Tooltip title={item.label}>
                 <ListItemText
                   primary={item.label}

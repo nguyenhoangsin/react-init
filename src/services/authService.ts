@@ -1,15 +1,15 @@
-import { redirect, LoaderFunctionArgs } from "react-router-dom";
-import localStorageUtils from "../utils/localStorageUtils";
+import { redirect, LoaderFunctionArgs } from 'react-router-dom';
+import localStorageUtils from '../utils/localStorageUtils';
 
 export enum UserRole {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  GUEST = "GUEST",
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  GUEST = 'GUEST',
 }
 export enum Permission {
-  VIEW_DASHBOARD = "VIEW_DASHBOARD",
-  EDIT_USER = "EDIT_USER",
-  DELETE_POST = "DELETE_POST",
+  VIEW_DASHBOARD = 'VIEW_DASHBOARD',
+  EDIT_USER = 'EDIT_USER',
+  DELETE_POST = 'DELETE_POST',
 }
 
 interface User {
@@ -25,7 +25,7 @@ interface AuthProvider extends User {
   hasPermission(permission: Permission): boolean;
 }
 
-const AUTH_USER = "AUTH_USER";
+const AUTH_USER = 'AUTH_USER';
 let user: User | null = localStorageUtils.getItem<User>(AUTH_USER);
 
 export const authProvider: AuthProvider = {
@@ -71,9 +71,9 @@ export function authLoader({ request }: LoaderFunctionArgs) {
   if (!authProvider.isAuthenticated) {
     const params = new URLSearchParams();
 
-    params.set("from", new URL(request.url).pathname);
+    params.set('from', new URL(request.url).pathname);
 
-    return redirect("/login?" + params.toString());
+    return redirect('/login?' + params.toString());
   }
 
   return null;
@@ -81,7 +81,7 @@ export function authLoader({ request }: LoaderFunctionArgs) {
 
 export function loginLoader() {
   if (authProvider.isAuthenticated) {
-    return redirect("/");
+    return redirect('/');
   }
 
   return null;

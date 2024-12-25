@@ -24,7 +24,7 @@ const loadingOverlaySlice = createSlice({
     }),
     showHideLoading: (
       state: LoadingOverlay,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => ({
       ...state,
       isLoading: action.payload,
@@ -32,7 +32,8 @@ const loadingOverlaySlice = createSlice({
   },
 });
 
-export const { showLoading, hideLoading, showHideLoading } = loadingOverlaySlice.actions;
+export const { showLoading, hideLoading, showHideLoading } =
+  loadingOverlaySlice.actions;
 export const loadingOverlayReducer = loadingOverlaySlice.reducer;
 
 // SELECTOR
@@ -40,5 +41,5 @@ export const isLoadingSelector = (state: Storetate) =>
   state.loadingOverlay.isLoading;
 export const isLoadingOverlayReselector = createSelector(
   [isLoadingSelector],
-  (isLoading) => isLoading
+  (isLoading) => isLoading,
 );

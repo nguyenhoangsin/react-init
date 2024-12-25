@@ -17,13 +17,15 @@ function Error404(): ReactElement {
           <div>ERROR {isRouteErrorResponse(error) ? error.status : ''}</div>
           <h1 className={style.status}>Page Not Found</h1>
           <div className={style.message}>
-            We can't show the page you wanted to see here. We're sorry about
-            that.
+            We can&apos;t show the page you wanted to see here. We&apos;re sorry
+            about that.
           </div>
-          <Link to="/" className={style.link}>Go to our home page</Link>
+          <Link to='/' className={style.link}>
+            Go to our home page
+          </Link>
         </div>
         <div className={style.right}>
-          <img src={error404} alt="error404" />
+          <img src={error404} alt='error404' />
         </div>
       </div>
     </>

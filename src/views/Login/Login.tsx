@@ -1,5 +1,5 @@
 import { useState, ReactElement } from 'react';
-import { useLocation, useNavigate  } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -50,7 +50,7 @@ function Login(): ReactElement {
     setIsLoggingIn(true);
     try {
       await authProvider.signin(data.email);
-      navigate(from || "/");
+      navigate(from || '/');
     } catch (error) {
       console.log(error);
     }
@@ -70,16 +70,16 @@ function Login(): ReactElement {
       <p>You must log in to view the page at {from}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="name">Name: </label>
+          <label htmlFor='name'>Name: </label>
           <Controller
-            name="name"
+            name='name'
             control={control}
-            defaultValue=""
+            defaultValue=''
             render={({ field }) => (
               <input
                 value={field.value}
                 onChange={(e) => onNameChange(e.target.value)}
-                placeholder="Enter your name"
+                placeholder='Enter your name'
               />
             )}
           />
@@ -89,18 +89,18 @@ function Login(): ReactElement {
         </div>
 
         <div>
-          <label htmlFor="email" className="form-label">
+          <label htmlFor='email' className='form-label'>
             Email:{' '}
           </label>
           <Controller
-            name="email"
+            name='email'
             control={control}
-            defaultValue=""
+            defaultValue=''
             render={({ field }) => (
               <input
                 value={field.value}
                 onChange={field.onChange}
-                placeholder="Enter your email"
+                placeholder='Enter your email'
               />
             )}
           />
@@ -109,7 +109,7 @@ function Login(): ReactElement {
           )}
         </div>
 
-        <button type="submit" disabled={isLoggingIn}>
+        <button type='submit' disabled={isLoggingIn}>
           {isLoggingIn ? 'Logging in...' : 'Login'}
         </button>
       </form>

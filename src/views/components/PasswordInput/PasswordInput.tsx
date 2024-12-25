@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import style from './PasswordInput.scss';
 
@@ -43,7 +49,11 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         className={className}
         endAdornment={
           <InputAdornment position='end'>
-            <IconButton onClick={handleTogglePasswordVisibility} edge='end' aria-label='toggle password visibility'>
+            <IconButton
+              onClick={handleTogglePasswordVisibility}
+              edge='end'
+              aria-label='toggle password visibility'
+            >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
