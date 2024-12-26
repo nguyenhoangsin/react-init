@@ -12,7 +12,7 @@ type FormValues = {
   email: string;
 };
 
-const schema = yup.object().shape({
+const schema = yup.object({
   name: yup
     .string()
     .required('Name is required')
